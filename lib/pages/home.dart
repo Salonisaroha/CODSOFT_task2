@@ -12,7 +12,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 128, 145, 160),
+      backgroundColor: const Color(0xFFf4f4f4),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(bottom: 30.0),
@@ -28,8 +28,8 @@ class _HomeState extends State<Home> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            Color.fromARGB(255, 9, 8, 83),
-                            Color.fromARGB(255, 7, 45, 181)
+                            Color(0xFF4b6cb7),
+                            Color(0xFF182848),
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -38,6 +38,14 @@ class _HomeState extends State<Home> {
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20),
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            spreadRadius: 5,
+                            blurRadius: 10,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,8 +88,16 @@ class _HomeState extends State<Home> {
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.only(top: 130.0, left: 20.0, right: 20.0),
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 231, 237, 240),
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 5,
+                            blurRadius: 10,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
                       ),
                       child: Row(
                         children: [
@@ -106,16 +122,18 @@ class _HomeState extends State<Home> {
                                 Text(
                                   "Play &\nWin",
                                   style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30,
+                                  ),
                                 ),
                                 Text(
                                   "Play Quiz by\n guessing the Image",
                                   style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ],
                             ),
@@ -125,167 +143,76 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 20),
                 Text(
                   'Top Quiz Categories',
                   style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 10.0),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(30),
-                        elevation: 6.0,
-                        child: Container(
-                          width: 150,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset(
-                                  'assets/images/place.jpg',
-                                  height: 120,
-                                  width: 130,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(height: 5.0),
-                              Text(
-                                'Place',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Material(
-                        borderRadius: BorderRadius.circular(30),
-                        elevation: 6.0,
-                        child: Container(
-                          width: 150,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset(
-                                  'assets/images/animal.png',
-                                  height: 120,
-                                  width: 130,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(height: 5.0),
-                              Text(
-                                'Animals',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                    color: Colors.black87,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(height: 20.0),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
                     children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(30),
-                        elevation: 6.0,
-                        child: Container(
-                          width: 150,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset(
-                                  'assets/images/fruit.jpg',
-                                  height: 120,
-                                  width: 130,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(height: 5.0),
-                              Text(
-                                'Fruits',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Material(
-                        borderRadius: BorderRadius.circular(30),
-                        elevation: 6.0,
-                        child: Container(
-                          width: 150,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset(
-                                  'assets/images/objects.jpg',
-                                  height: 120,
-                                  width: 130,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(height: 5.0),
-                              Text(
-                                'Objects',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                      _buildCategoryRow(context, 'assets/images/place.jpg', 'Place', 'assets/images/animal.png', 'Animals'),
+                      SizedBox(height: 20.0),
+                      _buildCategoryRow(context, 'assets/images/fruit.jpg', 'Fruits', 'assets/images/objects.jpg', 'Objects'),
                     ],
                   ),
                 ),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCategoryRow(BuildContext context, String imagePath1, String title1, String imagePath2, String title2) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildCategoryCard(imagePath1, title1),
+        _buildCategoryCard(imagePath2, title2),
+      ],
+    );
+  }
+
+  Widget _buildCategoryCard(String imagePath, String title) {
+    return Material(
+      borderRadius: BorderRadius.circular(30),
+      elevation: 6.0,
+      child: Container(
+        width: 150,
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                imagePath,
+                height: 120,
+                width: 130,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.black87,
+                fontSize: 22.0,
+                fontWeight: FontWeight.w500,
+              ),
+            )
+          ],
         ),
       ),
     );
