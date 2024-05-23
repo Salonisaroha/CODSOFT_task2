@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,6 +8,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,9 +157,9 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     children: [
-                      _buildCategoryRow(context, 'assets/images/place.jpg', 'Place', 'assets/images/animal.png', 'Animals'),
+                      _buildCategoryRow(context, 'assets/images/dsa.jpg', 'DSA', 'assets/images/Cplusplus.png', 'C++'),
                       SizedBox(height: 20.0),
-                      _buildCategoryRow(context, 'assets/images/fruit.jpg', 'Fruits', 'assets/images/objects.jpg', 'Objects'),
+                      _buildCategoryRow(context, 'assets/images/CN.png', 'Computer Networks', 'assets/images/os.jpg', 'Operating System'),
                     ],
                   ),
                 ),

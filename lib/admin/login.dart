@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:quizz_app/pages/home.dart';
+//import 'package:quizz_app/admin/add_quiz.dart';
 
 class Admin extends StatefulWidget {
   const Admin({super.key});
@@ -10,110 +11,213 @@ class Admin extends StatefulWidget {
 }
 
 class _AdminState extends State<Admin> {
-  TextEditingController usernamecontroller = new TextEditingController();
-  TextEditingController userpasswordcontroller = new TextEditingController();
+  final TextEditingController usernamecontroller = TextEditingController();
+  final TextEditingController userpasswordcontroller = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Future<void> LoginAdmin() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        final snapshot = await FirebaseFirestore.instance.collection('Admin').get();
+        bool userFound = false;
+        for (var result in snapshot.docs) {
+          if (result.data()['id'] == usernamecontroller.text.trim()) {
+            userFound = true;
+            if (result.data()['password'] == userpasswordcontroller.text.trim()) {
+              Route route = MaterialPageRoute(builder: (context) => Home());
+              Navigator.pushReplacement(context, route);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Your password is not correct',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+              );
+            }
+            break;
+          }
+        }
+        if (!userFound) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Your ID is not correct',
+                style: TextStyle(fontSize: 18.0),
+              ),
+            ),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'An error occurred: $e',
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFededeb),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 20.0),
-                height: MediaQuery.of(context).size.height / 2,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xFF4b6cb7),
-                            Color(0xFF182848)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.elliptical(
-                      MediaQuery.of(context).size.width,
-                      100.0,
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 20.0),
+                  height: MediaQuery.of(context).size.height / 2,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF4b6cb7), Color(0xFF182848)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.elliptical(
+                        MediaQuery.of(context).size.width,
+                        100.0,
+                      ),
                     ),
                   ),
                 ),
               ),
-              
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 30.0, right:30.0,top:60.0),
-              child:Form(child:Column(
-                children: [
-                  Text('Let\'s start with Admin!', style:TextStyle(
-                    color: Colors.black, fontSize: 25.0, fontWeight: FontWeight.bold
-                  )),
-                  SizedBox(height: 30.0),
-                  Material(
-                    elevation:3.0,
-                    borderRadius: BorderRadius.circular(20),
-                    child:Container(
-                      height: MediaQuery.of(context).size.height/2.2,
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(20),
-
+              Container(
+                margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 60.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Let\'s start with Admin!',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      child:Column(children: [
-                        SizedBox(height:50.0),
-                        Container(
-                          padding: EdgeInsets.only(left:20.0, top:5.0),
-                          margin: EdgeInsets.symmetric(horizontal: 20.0),
+                      SizedBox(height: 30.0),
+                      Material(
+                        elevation: 5.0,
+                        borderRadius: BorderRadius.circular(20),
+                        shadowColor: Colors.black26,
+                        child: Container(
+                          padding: EdgeInsets.all(20.0),
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.orangeAccent)
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Center(
-                            child: TextFormField(
-                              controller:usernamecontroller ,
-                              validator: (value){
-                                if(value==null || value.isEmpty){
-                                  return 'Please Enter Username';
-                                }
-                              } ,
-                              decoration: InputDecoration(border:InputBorder.none, hintText: "Username", hintStyle: TextStyle(color:Colors.black,) ),
-                              
-                            ),
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                                margin: EdgeInsets.symmetric(vertical: 10.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(color: Colors.orangeAccent),
+                                ),
+                                child: TextFormField(
+                                  controller: usernamecontroller,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please Enter Username';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Username",
+                                    hintStyle: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                                margin: EdgeInsets.symmetric(vertical: 10.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(color: Colors.orangeAccent),
+                                ),
+                                child: TextFormField(
+                                  controller: userpasswordcontroller,
+                                  obscureText: true,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please Enter Password!';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Password",
+                                    hintStyle: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 20.0),
+                              GestureDetector(
+                                onTap: () {
+                                  LoginAdmin();
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 12.0),
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(10),
+                                    gradient: LinearGradient(
+                                      colors: [Colors.blue, Colors.blueAccent],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.blueAccent.withOpacity(0.2),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Log In',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        SizedBox(height: 40,),
-                         Container(
-                          padding: EdgeInsets.only(left:20.0, top:5.0),
-                          margin: EdgeInsets.symmetric(horizontal: 20.0),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.orangeAccent)
-                          ),
-                          child: Center(
-                            child: TextFormField(
-                              controller:usernamecontroller ,
-                              validator: (value){
-                                if(value==null || value.isEmpty){
-                                  return 'Please Enter Password!';
-                                }
-                              } ,
-                              decoration: InputDecoration(border:InputBorder.none, hintText: "Password", hintStyle: TextStyle(color:Colors.black,) ),
-                              
-                            ),
-                          ),
-                        )
-                        
-                      ],)
-                    )
-
+                      ),
+                    ],
                   ),
-
-                ],
-              ))
-            ),
-          ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

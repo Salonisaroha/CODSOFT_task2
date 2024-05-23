@@ -4,10 +4,11 @@ import 'package:quizz_app/admin/login.dart';
 import 'package:quizz_app/pages/home.dart';
 import 'package:quizz_app/pages/question.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(
-  );
+  await Firebase.initializeApp(
+  options: FirebaseOptions(apiKey: "AIzaSyCVhdpotu5q1C8fEKTR6PZReEAw3y-JJBE", appId: "1:928220692773:android:4e6bb5f60b3b8f3d13dacc", messagingSenderId: "", projectId: "quizzapp-c9bd2")
+ );
   runApp(const MyApp());
 }
 
