@@ -1,4 +1,7 @@
+// main.dart
+
 import 'package:flutter/material.dart';
+import 'question_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,7 +11,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +106,7 @@ class _HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30), // Making the border circular
+                              borderRadius: BorderRadius.circular(30),
                               child: Image.asset(
                                 'assets/images/quizz.png',
                                 height: 210,
@@ -175,44 +177,54 @@ class _HomeState extends State<Home> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _buildCategoryCard(imagePath1, title1),
-        _buildCategoryCard(imagePath2, title2),
+        _buildCategoryCard(context, imagePath1, title1),
+        _buildCategoryCard(context, imagePath2, title2),
       ],
     );
   }
 
-  Widget _buildCategoryCard(String imagePath, String title) {
-    return Material(
-      borderRadius: BorderRadius.circular(30),
-      elevation: 6.0,
-      child: Container(
-        width: 150,
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                imagePath,
-                height: 120,
-                width: 130,
-                fit: BoxFit.cover,
+  Widget _buildCategoryCard(BuildContext context, String imagePath, String title) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => QuestionScreen(category: title),
+          ),
+        );
+      },
+      child: Material(
+        borderRadius: BorderRadius.circular(30),
+        elevation: 6.0,
+        child: Container(
+          width: 150,
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  imagePath,
+                  height: 120,
+                  width: 130,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              title,
-              style: TextStyle(
-                color: Colors.black87,
-                fontSize: 22.0,
-                fontWeight: FontWeight.w500,
-              ),
-            )
-          ],
+              SizedBox(height: 10.0),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

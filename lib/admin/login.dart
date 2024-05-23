@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quizz_app/pages/home.dart';
-//import 'package:quizz_app/admin/add_quiz.dart';
 
 class Admin extends StatefulWidget {
   const Admin({super.key});
@@ -91,6 +91,27 @@ class _AdminState extends State<Admin> {
                       ),
                     ),
                   ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 30.0), // Spacer to maintain distance
+                      Material(
+                        elevation: 5.0,
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: SizedBox(
+                            width: 300,
+                            height: 300, // Decreased height
+                            child: Image.asset(
+                              'assets/images/2.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -100,9 +121,20 @@ class _AdminState extends State<Admin> {
                   child: Column(
                     children: [
                       Text(
+                        'Quiz App',
+                        style: GoogleFonts.pacifico(
+                          textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      Text(
                         'Let\'s start with Admin!',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.black54,
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -140,7 +172,7 @@ class _AdminState extends State<Admin> {
                                     border: InputBorder.none,
                                     hintText: "Username",
                                     hintStyle: TextStyle(
-                                      color: Colors.black,
+                                      color: Color.fromARGB(255, 129, 127, 127),
                                     ),
                                   ),
                                 ),
@@ -166,7 +198,7 @@ class _AdminState extends State<Admin> {
                                     border: InputBorder.none,
                                     hintText: "Password",
                                     hintStyle: TextStyle(
-                                      color: Colors.black,
+                                      color: Color.fromARGB(255, 129, 127, 127),
                                     ),
                                   ),
                                 ),
