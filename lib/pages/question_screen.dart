@@ -463,7 +463,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Center(
               child: Text(
                 currentQuestion['question'],
@@ -500,14 +500,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 );
               }).toList(),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Center(
               child: Text(
                 'Time Remaining: $_timeRemaining seconds',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
               ),
             ),
-            SizedBox(height: 60.0),
+            SizedBox(height: 20.0),
             Center(
               child: ElevatedButton(
                 onPressed: _isAnswered ? _goToNextQuestion : null,

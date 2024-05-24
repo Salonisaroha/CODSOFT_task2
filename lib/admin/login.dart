@@ -99,18 +99,19 @@ class _AdminState extends State<Admin> {
       borderRadius: BorderRadius.circular(20.0),
       child: SizedBox(
         width: 330,
-        height: 340, // Decreased height
+        height: 250, // Decreased height
         child: Stack(
           children: [
             Positioned.fill(
               child: Image.asset(
                 'assets/images/robot.png',
                 fit: BoxFit.cover,
+                
               ),
             ),
             Positioned(
-              top: -50,
-              left: -90,
+              top: -70,
+              left: -110,
               child: Image.asset(
                 'assets/images/cloud.png',
                 width: 300, // Adjust the size as needed
@@ -127,7 +128,7 @@ class _AdminState extends State<Admin> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 60.0),
+                margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 15.0),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -142,7 +143,7 @@ class _AdminState extends State<Admin> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10.0),
+                      SizedBox(height: 8.0),
                       Text(
                         'Let\'s start with Admin!',
                         style: TextStyle(
@@ -151,7 +152,7 @@ class _AdminState extends State<Admin> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 30.0),
+                      SizedBox(height: 8.0),
                       Material(
                         elevation: 5.0,
                         borderRadius: BorderRadius.circular(20),
@@ -166,7 +167,7 @@ class _AdminState extends State<Admin> {
                             children: [
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-                                margin: EdgeInsets.symmetric(vertical: 10.0),
+                                margin: EdgeInsets.symmetric(vertical: 8.0),
                                 decoration: BoxDecoration(
                                   color: Colors.grey[200],
                                   borderRadius: BorderRadius.circular(10),
@@ -215,7 +216,7 @@ class _AdminState extends State<Admin> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 20.0),
+                              SizedBox(height: 10.0),
                               GestureDetector(
                                 onTap: () {
                                   LoginAdmin();
