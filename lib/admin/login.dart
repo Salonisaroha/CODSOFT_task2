@@ -92,30 +92,37 @@ class _AdminState extends State<Admin> {
                     ),
                   ),
                   
-                  child: Column(
-                  
-                    mainAxisSize: MainAxisSize.min,
-                    
-                    children: [
-                      SizedBox(height: 40.0),
-                     // Image.asset('assets/images/cloud.png'),
-                       // Spacer to maintain distance
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: SizedBox(
-                          width: 300,
-                          height: 300, // Decreased height
-                          child: Padding(
-                            padding: const EdgeInsets.only(left:70.0),
-                            child: Image.asset(
-                              'assets/images/robot.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                child: Column(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    ClipRRect(
+      borderRadius: BorderRadius.circular(20.0),
+      child: SizedBox(
+        width: 330,
+        height: 340, // Decreased height
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/images/robot.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned(
+              top: -50,
+              left: -90,
+              child: Image.asset(
+                'assets/images/cloud.png',
+                width: 300, // Adjust the size as needed
+                height: 250, // Adjust the size as needed
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  ],
+),
 
                 ),
               ),
