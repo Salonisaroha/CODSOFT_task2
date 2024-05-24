@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 Text(
-                                  "Play Quiz by\n guessing the Image",
+                                  "Play Quiz and\n Enhance your skills ",
                                   style: TextStyle(
                                     color: Colors.black54,
                                     fontWeight: FontWeight.bold,
@@ -195,7 +195,7 @@ class _HomeState extends State<Home> {
       },
       child: Material(
         borderRadius: BorderRadius.circular(30),
-        elevation: 6.0,
+        elevation: 8.0,
         child: Container(
           width: 150,
           padding: EdgeInsets.all(10),
@@ -218,8 +218,8 @@ class _HomeState extends State<Home> {
               Text(
                 title,
                 style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 22.0,
+                  color: Color.fromARGB(221, 59, 58, 58),
+                  fontSize: 18.0,
                   fontWeight: FontWeight.w500,
                 ),
               )

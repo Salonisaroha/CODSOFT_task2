@@ -10,7 +10,7 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
-  final Map<String, List<Map<String, dynamic>>> _categoryQuestions = {
+  final Map<String, List<Map<String, dynamic>>> _categoryQuestions =  {
     'DSA': [
       {
         'question': 'Which of the following sorting algorithms can be used to sort a random linked list with minimum time complexity?',
@@ -29,7 +29,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       },
       {
         'question': 'The size of the array should always be',
-        'options': ['Positive','Negative','Whole Number','Real Number'],
+        'options': ['Positive','Negative','whole Number','Real Number'],
         'answer': 'Positive'
       },
       {
@@ -49,7 +49,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       },
       {
         'question': 'Two Basic Operations used in queue are:',
-        'options': ['push and pop','Enqueue & Dequeue','insert and remove','none of these'],
+        'options': ['push and pop','Enqueue & Dequeue','inert and remove','none of these'],
         'answer': 'Enqueue & Dequeue'
       },
       {
@@ -64,9 +64,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
       },
       {
         'question': 'Graphs are represented using .',
-        'options': ['Adjacency list','Adjacency tree','Adjacency queue','none'],
+        'options': ['Adjacency list','Adjacency tree','Adjacenecy queue','none'],
         'answer': 'Adjacency list'
       }
+      // Add more DSA questions here
     ],
     'C++': [
       {
@@ -105,7 +106,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
           'conditional operator',
           'arithmetic operator'
         ],
-        'answer': 'conditional operator'
+        'answer': 'Conditional operator'
       },
       {
          'question': 'When can an inline function be expanded?',
@@ -138,7 +139,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
         'answer': '[]'
       },
       {
-        'question': 'Data members and member functions of a class are private by default. True or false',
+        'question': 'Data members and member functions of a class are private by default.True of false',
         'options': [
           'True',
           'False',
@@ -165,8 +166,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
           'Both A and B',
           'None'
         ],
-        'answer': 'Contiguous'
+        'answer': 'COntiguous'
       }
+      // Add more C++ questions here
     ],
     'Computer Networks': [
       {
@@ -230,6 +232,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
         'options': ['SMTP client', 'SMTP Server', 'peer', 'Master'],
         'answer': 'SMTP client'
       }
+      // Add more Computer Networks questions here
     ],
     'Operating System': [
       {
@@ -288,8 +291,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
         'options': ['Windows', 'MAC', 'Ms-Dos', 'None of these'],
         'answer': 'Ms-Dos'
       }
+      // Add more Operating System questions here
     ],
   };
+
+    
+  
 
   late List<Map<String, dynamic>> _questions;
   int _currentQuestionIndex = 0;
@@ -396,6 +403,21 @@ class _QuestionScreenState extends State<QuestionScreen> {
       return Scaffold(
         appBar: AppBar(
           title: Text(widget.category),
+          backgroundColor: Colors.blue,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.login),
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
+            ),
+          ],
         ),
         body: Center(
           child: Text('No questions available for this category.'),
@@ -407,12 +429,34 @@ class _QuestionScreenState extends State<QuestionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category),
+        backgroundColor: Colors.blue,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Navigator.pushNamed(context, '/home');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.login),
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Center(
+              child: Text(
+                widget.category,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 20),
             Center(
               child: Text(
                 'Question ${_currentQuestionIndex + 1} of ${_questions.length}',
@@ -463,7 +507,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
               ),
             ),
-            Spacer(),
+            SizedBox(height: 60.0),
             Center(
               child: ElevatedButton(
                 onPressed: _isAnswered ? _goToNextQuestion : null,
@@ -472,6 +516,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   style: TextStyle(fontSize: 18),
                 ),
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, // Background color
+                  foregroundColor: Colors.white, // Text and icon color
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
